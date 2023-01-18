@@ -59,12 +59,12 @@ char *hexa_byt(int n,int pid)
         str[i] = n % 2 + '0';
 		if(n % 2 == 0)
         {
-            write(1,"0",1);
+            // write(1,"0",1);
             kill(pid, SIGUSR1);
         }
         else    
         {
-            write(1,"1",1);
+            // write(1,"1",1);
             kill(pid, SIGUSR2);
         }
 		i--;
@@ -72,7 +72,7 @@ char *hexa_byt(int n,int pid)
         usleep(100);
 	}
 	str[i] = '\0';
-    write(1,"\n",1);
+    // write(1,"\n",1);
 	return str;
 }
 void sen_msg(char c,int pid_s)
@@ -92,22 +92,8 @@ int main(int ac, char *av[])
     {
         i = 0;
         str = hexa_byt(av[2][j],pid_s);
-        // while (str[i] != '\0')
-        // {
-        //     if(str[i] == '0')
-        //      {
-        //         ;write(1,"0",1);
-        //         kill(pid_s, SIGUSR1);
-        //      }
-        //      else    
-        //      {
-        //         write(1,"1",1);
-        //         kill(pid_s, SIGUSR2);
-        //      }
-        //     i++;
-        // }
-        
         j++;
     }
+    printf("\n\n%d",getpid());
     return 0;
 }

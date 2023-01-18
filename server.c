@@ -117,51 +117,27 @@ void	handler_sv(int signal, siginfo_t *info, void *nu)
 {
 	static int	bit;
 	static int	i;
-	char *str;
+	char str[9];
 	char c;
-
+	// info->si_pid
 	if (signal == SIGUSR1)
 	{
-		// write(1,"0",1);
-		// str[7 - i] = '0';
-		// write(1,&str[7 - i], 1);
-		// write(1, ft_itoa(7 - i),1);
-		i = i * 10;
-		i += 0;
+		str[i] = '0';
 	}
 	if (signal == SIGUSR2)
 	{
-		// write(1,"1",1);
-		// str[7 - i] = '1';
-		// write(1,&str[7 - i], 1);
-		// write(1,ft_itoa(7 - i),1);
-		i = i * 10;
-		i += 1;
+		str[i] = '1';
 	}
-	// write(1, &str[0], 1);
-	// write(1, str, 9);
-	// write(1, "\n",1);
-	// str[7] = '\0';
-	// write(1,&i,1);
-	// write(1,"\n",1);
-	// write(1,&bit,1);
-	// write(1,ft_itoa(i),9);
-	// i++;
+	i++;
 	bit++;
 	if (bit == 8)
 	{
-		c = 0;
-		str = NULL;
-		str = ft_itoa(i);
+		str[8] = '\0';
 		c = put_back(str);
 		write(1,&c,1);
 		i = 0;
 		bit = 0;
 	}
-}
-void ft_handle()
-{
-    printf("sss -> %d\n",c);
 }
 
 void signl(void)
@@ -188,11 +164,3 @@ int main(int argc, char const *argv[])
 	}
     return 0;
 }
-
-// int main(int argc, char const *argv[])
-// {
-// 	char *str = "10000110";
-// 	char c = put_back(str);
-// 	write(1,&c,1);
-// 	return 0;
-// }
