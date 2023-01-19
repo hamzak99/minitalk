@@ -1,53 +1,6 @@
 #include "minitalk.h"
 #include<string.h>
 
-
-
-// int power(int os)
-// {
-// 	int i;
-
-// 	i = 0;
-// 	int rsl = 1;
-// 	while (i++ < os)
-// 	{
-// 		rsl *= 2;
-// 	}
-// 	return rsl;
-// }
-// int put_back(char *str)
-// {
-// 	int i = 7;
-// 	int os = 0;
-// 	int rsl = 0;
-// 	while (i >= 0)
-// 	{
-// 		if(str[i] == '0')
-// 			os++;
-// 		else
-// 		{
-// 			rsl = rsl + power(os);
-// 			os++;
-// 		}
-// 		i--;
-// 	}
-// 	return rsl;
-// }
-// char *hexa_byt(int n,int pid)
-// {
-// 	char *str;
-// 	str = malloc(8);
-// 	int i = 7;
-
-// 	while (i >= 0)
-// 	{
-// 		str[i] = n % 2 + '0';
-// 		i--;
-// 		n = n / 2;
-// 	}
-// 	str[i] = '\0';
-// 	return str;
-// }
 char *hexa_byt(int n,int pid)
 {
 	char *str;
@@ -59,12 +12,12 @@ char *hexa_byt(int n,int pid)
         str[i] = n % 2 + '0';
 		if(n % 2 == 0)
         {
-            // write(1,"0",1);
+            write(1,"0",1);
             kill(pid, SIGUSR1);
         }
         else    
         {
-            // write(1,"1",1);
+            write(1,"1",1);
             kill(pid, SIGUSR2);
         }
 		i--;
@@ -72,7 +25,7 @@ char *hexa_byt(int n,int pid)
         usleep(100);
 	}
 	str[i] = '\0';
-    // write(1,"\n",1);
+    write(1,"\n",1);
 	return str;
 }
 void sen_msg(char c,int pid_s)
@@ -91,7 +44,7 @@ int main(int ac, char *av[])
     while (av[2][j] != '\0')
     {
         i = 0;
-        str = hexa_byt(av[2][j],pid_s);
+        str = hexa_byt((unsigned char)av[2][j],pid_s);
         j++;
     }
     printf("\n\n%d",getpid());
