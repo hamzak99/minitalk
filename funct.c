@@ -1,50 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   funct.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hkasbaou <hkasbaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/30 22:09:42 by hkasbaou          #+#    #+#             */
-/*   Updated: 2023/02/02 17:12:34 by hkasbaou         ###   ########.fr       */
+/*   Created: 2023/02/02 17:15:22 by hkasbaou          #+#    #+#             */
+/*   Updated: 2023/02/02 17:15:23 by hkasbaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
-#include <signal.h>
-#include <stdio.h>
-#include <unistd.h>
 
-void	hexa_byt(int n, int pid)
+void	*ft_memset(void *s, int c, size_t n)
 {
-	int	i;
+	size_t			i;
+	unsigned char	*str;
 
-	i = 7;
-	while (i >= 0)
+	str = (unsigned char *)s;
+	i = 0;
+	while (i < n)
 	{
-		if (n % 2 == 0)
-			kill(pid, SIGUSR1);
-		else
-			kill(pid, SIGUSR2);
-		i--;
-		n = n / 2;
-		usleep(100);
+		str[i] = c;
+		i++;
 	}
+	return (s);
 }
 
-int	main(int ac, char *av[])
+void	ft_bzero(void *s, size_t n)
 {
-	int	pid_s;
-	int	j;
+	ft_memset(s, '\0', n);
+}
 
-	j = 0;
-	if (ac < 2)
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*s;
+
+	s = malloc(count * size);
+	if (!s)
 		return (0);
-	pid_s = ft_atoi(av[1]);
-	while (av[2][j] != '\0')
-	{
-		hexa_byt(av[2][j], pid_s);
-		j++;
-	}
-	return (0);
+	ft_bzero(s, count * size);
+	return (s);
 }

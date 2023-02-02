@@ -6,12 +6,23 @@
 /*   By: hkasbaou <hkasbaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 22:35:29 by hkasbaou          #+#    #+#             */
-/*   Updated: 2023/01/30 22:35:30 by hkasbaou         ###   ########.fr       */
+/*   Updated: 2023/02/02 16:44:56 by hkasbaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 #include <string.h>
+#include <unistd.h>
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
 
 void	hexa_byt(int n, int pid)
 {
@@ -46,7 +57,7 @@ int	main(int ac, char *av[])
 		i++;
 		hexa_byt((unsigned char)av[2][j++], pid_s);
 	}
-	if (i == strlen(av[2]))
+	if (i == (int)strlen(av[2]))
 		printf("\n------recerved------\n");
 	printf("\n\n%d", getpid());
 	return (0);

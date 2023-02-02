@@ -6,12 +6,13 @@
 /*   By: hkasbaou <hkasbaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 22:09:14 by hkasbaou          #+#    #+#             */
-/*   Updated: 2023/01/30 22:09:15 by hkasbaou         ###   ########.fr       */
+/*   Updated: 2023/02/02 17:22:15 by hkasbaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 #include <signal.h>
+#include <stdio.h>
 #include <unistd.h>
 
 // // //////////////////////////////////
@@ -32,6 +33,7 @@ void	handler_sv(int signal, siginfo_t *info, void *nu)
 	static char	str[9];
 	char		c;
 
+	(void)nu;
 	if (info->si_pid != pid)
 		renistialize(&bit, &i);
 	if (signal == SIGUSR1)
@@ -60,12 +62,13 @@ void	signl(void)
 	sigaction(SIGUSR2, &sign, NULL);
 }
 
-int	main(int argc, char const *argv[])
+int	main(void)
 {
 	int	pid;
 
 	pid = getpid();
-	printf("%d\n", pid);
+	write(1, ft_itoa(pid), (int)cntnmb(pid));
+	write(1, "\n", 1);
 	while (1)
 	{
 		signl();

@@ -6,7 +6,7 @@
 /*   By: hkasbaou <hkasbaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 18:21:49 by hkasbaou          #+#    #+#             */
-/*   Updated: 2023/01/30 21:48:00 by hkasbaou         ###   ########.fr       */
+/*   Updated: 2023/01/31 16:15:53 by hkasbaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,3 +83,11 @@ int	ft_atoi(const char *str)
 	return (rsl * sign);
 }
 
+void	printer(const char *buff, int *i)
+{
+	write(1, &buff[0], 1);
+	write(1, &buff[1], 1);
+	write(1, &buff[2], 1);
+	write(1, &buff[3], 1);
+	*i = 0;
+}
